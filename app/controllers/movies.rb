@@ -21,3 +21,14 @@ delete '/movies/:id' do |id|
   @movie = Movie.destroy(id)
   {id: @movie.id}.to_json
 end
+
+get '/movies/:id/edit' do |id|
+  @movie = Movie.find(id)
+  erb :"movies/_movie_edit", layout: false
+end
+
+put '/movies/:id' do |id|
+  @movie = Movie.find(id)
+  @movie.update(title: params[:movie][:title])
+  {movie: @movie}.to_json
+end
