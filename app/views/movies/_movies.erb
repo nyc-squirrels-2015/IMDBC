@@ -1,0 +1,5 @@
+<ul id="movies-list">
+  <% @movies.each do |movie| %>
+    <li id="movie<%=movie.id%>"><a href="/movies/<%=movie.id%>"> <%=movie.title%> </a> - Global Rating: <%=movie.average%><a id="delete-movie" href="/movies/<%=movie.id%>"> Delete </a><a id="update-movie" href="/movies/<%=movie.id%>/edit"> Edit </a></li>
+  <% end %>
+</ul>

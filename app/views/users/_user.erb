@@ -1,0 +1,14 @@
+Welcome, <span id="username"><%= @user.name %>.</span>
+
+What do you want to do?
+<div id="options">
+  <a id="movies-btn" href="/movies"> See Movies </a>
+  <a id="create-movie" href="/movies/new"> Add new movie </a>
+  <div id="user-options">
+    <form id="delete-user-form" action="/users/<%=@user.id%>" method="POST">
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" value="Delete Yourself">
+    </form>
+    <button id="user-edit-btn" route="/users/<%=@user.id%>/edit"> Edit </button>
+  </div>
+</div>
