@@ -14,22 +14,19 @@
   <!-- Load Vollkorn font -->
   <link href='http://fonts.googleapis.com/css?family=Vollkorn:400italic,400' rel='stylesheet' type='text/css'>
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script src="/js/application.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="/js/errorModule.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/movies.js"></script>
+  <script src="/js/users.js"></script>
 
   <title></title>
 </head>
 <body>
+  <nav>
+  <%= erb :_navbar %>
+  </nav>
 <div id="content">
-  <header>
-    <a href="/"><img src="/img/zenchinese.png" class="logo"></a>
-    <div id="login-toolbar">
-      <% if current_user %>
-        <a href="/logout">Logout</a>
-      <% else %>
-        <a href="/login">Login</a>
-      <% end %>
-  </header>
   <%= yield %>
 </div>
 </body>
