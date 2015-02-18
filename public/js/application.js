@@ -4,12 +4,17 @@ $(document).ready(function () {
     var target = $(e.target);
     var url = target.attr('href');
     console.log(url);
-    $.ajax({
-      type: 'get',
-      url: url
-    }).success(function (response) {
-      $('nav').append(response);
-    });
+    if ($('nav #login-form').length === 0) {
+      $.ajax({
+        type: 'get',
+        url: url,
+        success: function (response) {
+          $('nav').append(response);
+        }
+      });
+    } else {
+      $('#login-form').remove();
+    }
   });
 
   $('nav').on("submit", "#login-form", function (e) {
@@ -22,9 +27,14 @@ $(document).ready(function () {
       type: 'post',
       url: url,
       data: {'user[email]': input(0), 'user[password]': input(1)},
-      dataType: 'json'
-    }).success(function (response) {
-      window.location.href = response.path;
+      dataType: 'json',
+      success: function (response) {
+        window.location.href = response.path;
+      },
+      error: function () {
+        console.log('sup');
+        errorModule.show("Invalid email or password");
+      }
     });
   });
 
@@ -35,9 +45,10 @@ $(document).ready(function () {
     if ($('#content #movies-list').length === 0) {
       $.ajax({
         type: 'get',
-        url: url
-      }).success(function (response) {
-        target.append(response);
+        url: url,
+        success: function (response) {
+          target.after(response);
+        }
       });
     } else {
       $('#movies-list').remove();
@@ -48,12 +59,13 @@ $(document).ready(function () {
     e.preventDefault();
     var target = $(this);
     var url = target.attr('href');
-    if ($('#content #signup-form').length === 0) {
+    if ($('nav #signup-form').length === 0) {
       $.ajax({
         type: 'get',
-        url: url
-      }).success(function (response) {
-        target.after(response);
+        url: url,
+        success: function (response) {
+          target.after(response);
+        }
       });
     } else {
       $('#signup-form').remove();
@@ -70,9 +82,10 @@ $(document).ready(function () {
       type: 'post',
       url: url,
       data: {'user[name]': input(0), 'user[email]': input(1), 'user[password]': input(2)},
-      dataType: 'json'
-    }).success(function (response) {
-      window.location.href = response.path;
+      dataType: 'json',
+      success: function (response) {
+        window.location.href = response.path;
+      }
     });
   });
 });
