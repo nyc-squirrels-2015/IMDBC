@@ -38,23 +38,6 @@ $(document).ready(function () {
     });
   });
 
-  $('#content').on("click", "#movies-btn", function (e) {
-    e.preventDefault();
-    var target = $(this);
-    var url = target.attr('href');
-    if ($('#content #movies-list').length === 0) {
-      $.ajax({
-        type: 'get',
-        url: url,
-        success: function (response) {
-          target.after(response);
-        }
-      });
-    } else {
-      $('#movies-list').remove();
-    }
-  });
-
   $('#signup-btn').on("click", function (e) {
     e.preventDefault();
     var target = $(this);

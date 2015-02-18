@@ -67,5 +67,9 @@ code {
 }
 
 form input {
-    display:block;
+    display: block;
+}
+
+.options a{
+    display: block;
 }
