@@ -10,11 +10,12 @@ post '/auth/login' do
   p params[:user][:email]
   p params[:user][:password]
   @user = User.find_by(email: params[:user][:email]).try(:authenticate, params[:user][:password])
-  p @user
-  # .try(:authenticate(params[:user][:password]))
-  set_session
-  {path: "/users/#{current_user.id}"}.to_json
-  # User.find_by(name: 'david').try(:authenticate, 'notright')
+  if p @user
+    set_session
+    {path: "/users/#{current_user.id}"}.to_json
+  else
+    401
+  end
 end
 
 get '/users/new' do
@@ -25,11 +26,6 @@ post '/users' do
   @user = User.create(params[:user])
   set_session
   {path: "/users/#{current_user.id}"}.to_json
-  # if @user
-  #   set_session
-  # else
-  #   redirect '/login'
-  # end
 end
 
 get '/auth/logout' do
