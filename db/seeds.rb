@@ -1,0 +1,23 @@
+User.create(name: "Lucas Santos", email: "lucasrsantos1@gmail.com", password_digest: 123)
+User.create(name: "Ivan Birkman", email: "ivanyukio@gmail.com", password_digest: 123)
+
+Movie.create(title: "Harry Potter 1")
+Movie.create(title: "Harry Potter 2")
+Movie.create(title: "Harry Potter 3")
+Movie.create(title: "Harry Potter 4")
+Movie.create(title: "Harry Potter 5")
+Movie.create(title: "Harry Potter 6")
+Movie.create(title: "Harry Potter 7")
+Movie.create(title: "Harry Potter 8")
+
+TvShow.create(title: "Sons of Anarchy")
+TvShow.create(title: "House of Cards")
+TvShow.create(title: "Game of Thrones")
+TvShow.create(title: "How I Met Your Mother")
+TvShow.create(title: "Bones")
+
+Rating.create(user_id: 1, ratable_id: 1, ratable_type: "Movie", rating: 10)
+Rating.create(user_id: 1, ratable_id: 2, ratable_type: "Movie", rating: 9)
+Rating.create(user_id: 1, ratable_id: 3, ratable_type: "Movie", rating: 8)
+Rating.create(user_id: 1, ratable_id: 4, ratable_type: "Movie", rating: 7)
+Rating.create(user_id: 1, ratable_id: 5, ratable_type: "Movie", rating: 9)
