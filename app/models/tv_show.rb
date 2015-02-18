@@ -1,6 +1,6 @@
 class TvShow < ActiveRecord::Base
   has_many :ratings, as: :ratable
-  has_many :users, through: :user_rates
+  has_many :users, through: :ratings
 
 
   def update_average(rating)

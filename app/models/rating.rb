@@ -1,7 +1,7 @@
 class Rating < ActiveRecord::Base
   belongs_to :ratable, polymorphic: true
   belongs_to :user
-  validates :user, uniqueness: { scope: :ratable_id,
+  validates :user, uniqueness: { scope: :ratable,
     message: "User can only vote on this comment one time" }
   after_create :update_ratable_avg
 

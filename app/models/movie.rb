@@ -1,6 +1,6 @@
 class Movie < ActiveRecord::Base
   has_many :ratings, as: :ratable
-  has_many :users, through: :user_rates
+  has_many :users, through: :ratings
 
   def average
     self.total_rating / self.num_votes
