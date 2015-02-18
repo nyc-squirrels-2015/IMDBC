@@ -6,7 +6,7 @@ class Movie < ActiveRecord::Base
     if self.num_votes > 0
       self.total_rating / self.num_votes
     else
-      "Nobody voted for this yet ):"
+      "Nobody voted for this yet <img src='/img/sad_icon.jpg'>"
     end
   end
 
