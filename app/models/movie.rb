@@ -3,11 +3,11 @@ class Movie < ActiveRecord::Base
   has_many :users, through: :ratings
 
   def average
-    self.total_rating / self.num_votes
-  end
-
-  def bacon(hey)
-    p "bacon#{hey}"
+    if self.num_votes > 0
+      self.total_rating / self.num_votes
+    else
+      "Nobody voted for this yet ):"
+    end
   end
 
   def update_average(rating)
@@ -16,9 +16,4 @@ class Movie < ActiveRecord::Base
     self.update(total_rating: total_rating + rating, num_votes: votes + 1)
   end
 
-  # def update_mov_average(rating)
-  #   # mov = Movie.find(movie_id)
-  #   self.total_rating += rating
-  #   self.num_votes += 1
-  # end
 end
