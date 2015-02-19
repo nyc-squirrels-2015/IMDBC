@@ -71,16 +71,20 @@ $(document).ready(function () {
     e.preventDefault();
     var target = $(this);
     var url = target.attr('href');
-    $.ajax({
-      type: 'get',
-      url: url,
-      success: function (response) {
-        $('#update-movie').after(response);
-      }
-    });
+    if ($('#movie-edit-form').length === 0) {
+      $.ajax({
+        type: 'get',
+        url: url,
+        success: function (response) {
+          $('#update-movie').after(response);
+        }
+      });
+    } else {
+      $('#movie-edit-form').remove();
+    }
   });
 
-  $('#options').on("click", "#movie-edit-form", function (e) {
+  $('#options').on("submit", "#movie-edit-form", function (e) {
     e.preventDefault();
     var target = $(this);
     var url = target.attr('action');
@@ -90,7 +94,8 @@ $(document).ready(function () {
       data: {'movie[title]': getInput.input(target, 'input', 0)},
       dataType: 'json',
       success: function (response) {
-
+        $("#movie-title" + response.movie.id).text(response.movie.title);
+        $('#movie-edit-form').remove();
       }
     });
   });
