@@ -1,5 +1,9 @@
 <ul id="movies-list">
   <% @movies.each do |movie| %>
-    <li id="movie<%=movie.id%>"><a href="/movies/<%=movie.id%>"> <span id="movie-title<%=movie.id%>"><%=movie.title%></span> </a> - Global Rating: <%=movie.average%><a id="delete-movie" href="/movies/<%=movie.id%>"> Delete </a><a id="update-movie" href="/movies/<%=movie.id%>/edit"> Edit </a></li>
+    <% rating = Rating.where(user_id: current_user.id, ratable_id: movie.id, ratable_type: "Movie").pluck(:rating).first %>
+    <% if !rating %>
+      <% rating = "<a id='add-rating' href='/ratings/new'> Add Rating </a>" %>
+    <% end %>
+    <li id="movie<%=movie.id%>"><a href="/movies/<%=movie.id%>"> <span id="movie-title<%=movie.id%>"><%=movie.title%></span> </a> - Global Rating: <%=movie.average%> - Your Rating: <%=rating %><a id="delete-movie" href="/movies/<%=movie.id%>"> Delete </a><a id="update-movie" href="/movies/<%=movie.id%>/edit"> Edit </a></li>
   <% end %>
 </ul>
