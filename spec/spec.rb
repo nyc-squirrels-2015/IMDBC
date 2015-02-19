@@ -1,5 +1,7 @@
 require_relative '../config/environment.rb'
-require_relative '../app/controllers/users.rb'  # <-- your sinatra app
+require_relative '../app/controllers/users.rb'
+require_relative '../app/controllers/auth.rb'
+require_relative '../app/controllers/movies.rb'
 require 'rspec'
 require 'rack/test'
 
@@ -16,7 +18,12 @@ describe 'IMDBC' do
       get '/auth/login'
       expect(last_response).to be_ok
       expect(last_response.body).to include 'Login'
-      # expect(last_response.body).to eq('Hello World')
+    end
+
+    it 'get /users/new' do
+      get '/users/new'
+      expect(last_response).to be_ok
+      expect(last_response.body).to include 'Create'
     end
 
   end
