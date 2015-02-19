@@ -21,12 +21,15 @@ $(document).ready(function () {
     e.preventDefault();
     var target = $(this);
     var url = target.attr('action');
-    var input = function (id) { return ($(target.find('input')[id]).val()); };
+    // var input = function (id) { return ($(target.find('input')[id]).val()); };
     // console.log(input(1));
     $.ajax({
       type: 'post',
       url: url,
-      data: {'user[email]': input(0), 'user[password]': input(1)},
+      data: {
+        'user[email]': getInput.input(target, 'input', 0),
+        'user[password]': getInput.input(target, 'input', 1)
+      },
       dataType: 'json',
       success: function (response) {
         window.location.href = response.path;
@@ -59,12 +62,16 @@ $(document).ready(function () {
     e.preventDefault();
     var target = $(this);
     var url = target.attr('action');
-    var input = function (id) { return ($(target.find('input')[id]).val()); };
+    // var input = function (id) { return ($(target.find('input')[id]).val()); };
     console.log(url);
     $.ajax({
       type: 'post',
       url: url,
-      data: {'user[name]': input(0), 'user[email]': input(1), 'user[password]': input(2)},
+      data: {
+        'user[name]': getInput.input(target, 'input', 0),
+        'user[email]': getInput.input(target, 'input', 0),
+        'user[password]': getInput.input(target, 'input', 0)
+      },
       dataType: 'json',
       success: function (response) {
         window.location.href = response.path;

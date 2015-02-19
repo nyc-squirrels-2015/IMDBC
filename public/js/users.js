@@ -16,11 +16,15 @@ $(document).ready(function () {
     e.preventDefault();
     var target = $(this);
     var url = target.attr('action');
-    var input = function (id) { return ($(target.find('input')[id]).val()); };
+    // var input = function (id) { return ($(target.find('input')[id]).val()); };
     $.ajax({
       url: url,
       type: 'put',
-      data: {'user[name]': input(0), 'user[email]': input(1), 'user[password]': input(2)},
+      data: {
+        'user[name]': getInput.input(target, 'input', 0),
+        'user[email]': getInput.input(target, 'input', 1),
+        'user[password]': getInput.input(target, 'input', 2)
+      },
       dataType: 'json',
       success: function (response) {
         $('#username').text(response.user.name);
