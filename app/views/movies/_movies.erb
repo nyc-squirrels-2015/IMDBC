@@ -4,6 +4,6 @@
     <% if !rating %>
       <% rating = "<a id='add-rating' href='/movies/#{movie.id}/ratings/new'> Add Rating </a>" %>
     <% end %>
-    <li id="movie<%=movie.id%>"><a href="/movies/<%=movie.id%>"> <span id="movie-title<%=movie.id%>"><%=movie.title%></span> </a> - Global Rating: <%=movie.average%> - Your Rating: <%=rating %><a id="delete-movie" href="/movies/<%=movie.id%>"> Delete </a><a id="update-movie" href="/movies/<%=movie.id%>/edit"> Edit </a></li>
+    <li id="movie<%=movie.id%>"><a href="/movies/<%=movie.id%>"> <span id="movie-title<%=movie.id%>"><%=movie.title%></span> </a> - Global Rating: <%=movie.average%> - Your Rating: <span class="your_rating<%=movie.id%>"><%=rating %></span><a id="delete-movie" href="/movies/<%=movie.id%>"> Delete </a><a id="update-movie" href="/movies/<%=movie.id%>/edit"> Edit </a></li>
   <% end %>
 </ul>
